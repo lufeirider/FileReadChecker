@@ -12,7 +12,7 @@ ERROR_DBMS_XML = "xml/errors.xml"
 SENSITIVE_HEADER_DICT = {'Host':'127.0.0.1','Client-IP': '127.0.0.1','X-Forwarded-For': '127.0.0.1','X-Forwarded-Host': '127.0.0.1','Referer':'http://www.google.com/search?hl=en&q=testing','User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.21 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.21'}
 WHITE_HEADER_LIST = ['Cookie','Cache-Control','Pragma','Connection','Upgrade-Insecure-Requests','Accept','Accept-Language','Accept-Encoding','If-None-Match','If-Modified-Since']
 # module-> m ，但是m不太好匹配
-SENSITIVE_PARAM_LIST = ['file','path','page','home','dir','url','temple','down','module']
+SENSITIVE_PARAM_LIST = ['file','path','page','home','dir','url','temple','down','module','name']
 
 
 
