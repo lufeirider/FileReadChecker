@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+    <type value="Java">
+        <!--文件报错-->
+        <error regexp="java.io.FileNotFoundException"/>
+    </type>
+    <type value="PHP">
+        <!--文件报错-->
+        <error regexp="failed to open stream: No such file or directory in"/>
+        <error regexp="expects parameter 1 to be a valid path"/>
+    </type>
+</root>
