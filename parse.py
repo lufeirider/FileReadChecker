@@ -5,20 +5,19 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-
 CRAWL_EXCLUDE_EXTENSIONS = (
-"3ds", "3g2", "3gp", "7z", "DS_Store", "a", "aac", "adp", "ai", "aif", "aiff", "apk", "ar", "asf", "au", "avi", "bak",
-"bin", "bk", "bmp", "btif", "bz2", "cab", "caf", "cgm", "cmx", "cpio", "cr2", "dat", "deb", "djvu", "dll", "dmg", "dmp",
-"dng", "doc", "docx", "dot", "dotx", "dra", "dsk", "dts", "dtshd", "dvb", "dwg", "dxf", "ear", "ecelp4800", "ecelp7470",
-"ecelp9600", "egg", "eol", "eot", "epub", "exe", "f4v", "fbs", "fh", "fla", "flac", "fli", "flv", "fpx", "fst", "fvt",
-"g3", "gif", "gz", "h261", "h263", "h264", "ico", "ief", "image", "img", "ipa", "iso", "jar", "jpeg", "jpg", "jpgv",
-"jpm", "jxr", "ktx", "lvp", "lz", "lzma", "lzo", "m3u", "m4a", "m4v", "mar", "mdi", "mid", "mj2", "mka", "mkv", "mmr",
-"mng", "mov", "movie", "mp3", "mp4", "mp4a", "mpeg", "mpg", "mpga", "mxu", "nef", "npx", "o", "oga", "ogg", "ogv",
-"otf", "pbm", "pcx", "pdf", "pea", "pgm", "pic", "png", "pnm", "ppm", "pps", "ppt", "pptx", "ps", "psd", "pya", "pyc",
-"pyo", "pyv", "qt", "rar", "ras", "raw", "rgb", "rip", "rlc", "rz", "s3m", "s7z", "scm", "scpt", "sgi", "shar", "sil",
-"smv", "so", "sub", "swf", "tar", "tbz2", "tga", "tgz", "tif", "tiff", "tlz", "ts", "ttf", "uvh", "uvi", "uvm", "uvp",
-"uvs", "uvu", "viv", "vob", "war", "wav", "wax", "wbmp", "wdp", "weba", "webm", "webp", "whl", "wm", "wma", "wmv",
-"wmx", "woff", "woff2", "wvx", "xbm", "xif", "xls", "xlsx", "xlt", "xm", "xpi", "xpm", "xwd", "xz", "z", "zip", "zipx")
+    "3ds", "3g2", "3gp", "7z", "DS_Store", "a", "aac", "adp", "ai", "aif", "aiff", "apk", "ar", "asf", "au", "avi", "bak",
+    "bin", "bk", "bmp", "btif", "bz2", "cab", "caf", "cgm", "cmx", "cpio", "cr2", "dat", "deb", "djvu", "dll", "dmg", "dmp",
+    "dng", "doc", "docx", "dot", "dotx", "dra", "dsk", "dts", "dtshd", "dvb", "dwg", "dxf", "ear", "ecelp4800", "ecelp7470",
+    "ecelp9600", "egg", "eol", "eot", "epub", "exe", "f4v", "fbs", "fh", "fla", "flac", "fli", "flv", "fpx", "fst", "fvt",
+    "g3", "gif", "gz", "h261", "h263", "h264", "ico", "ief", "image", "img", "ipa", "iso", "jar", "jpeg", "jpg", "jpgv",
+    "jpm", "jxr", "ktx", "lvp", "lz", "lzma", "lzo", "m3u", "m4a", "m4v", "mar", "mdi", "mid", "mj2", "mka", "mkv", "mmr",
+    "mng", "mov", "movie", "mp3", "mp4", "mp4a", "mpeg", "mpg", "mpga", "mxu", "nef", "npx", "o", "oga", "ogg", "ogv",
+    "otf", "pbm", "pcx", "pdf", "pea", "pgm", "pic", "png", "pnm", "ppm", "pps", "ppt", "pptx", "ps", "psd", "pya", "pyc",
+    "pyo", "pyv", "qt", "rar", "ras", "raw", "rgb", "rip", "rlc", "rz", "s3m", "s7z", "scm", "scpt", "sgi", "shar", "sil",
+    "smv", "so", "sub", "swf", "tar", "tbz2", "tga", "tgz", "tif", "tiff", "tlz", "ts", "ttf", "uvh", "uvi", "uvm", "uvp",
+    "uvs", "uvu", "viv", "vob", "war", "wav", "wax", "wbmp", "wdp", "weba", "webm", "webp", "whl", "wm", "wma", "wmv",
+    "wmx", "woff", "woff2", "wvx", "xbm", "xif", "xls", "xlsx", "xlt", "xm", "xpi", "xpm", "xwd", "xz", "z", "zip", "zipx")
 
 
 class HTTPMETHOD:
@@ -134,13 +133,13 @@ def parseRequestFile(content, checkParams=True):
         scheme, port = None, None
 
     # check format
-    if not re.search(r"^[\n]*(%s).*?\sHTTP\/" % "|".join(getPublicTypeMembers(HTTPMETHOD, True)), request,re.I | re.M):
-        #check POST xxxxxxxxxxx HTTP
+    if not re.search(r"^[\n]*(%s).*?\sHTTP\/" % "|".join(getPublicTypeMembers(HTTPMETHOD, True)), request, re.I | re.M):
+        # check POST xxxxxxxxxxx HTTP
         logger.info("request format error")
         return
 
-    if re.search(r"^[\n]*%s.*?\.(%s)\sHTTP\/" % (HTTPMETHOD.GET, "|".join(CRAWL_EXCLUDE_EXTENSIONS)), request,re.I | re.M):
-        #check jpg png static file
+    if re.search(r"^[\n]*%s.*?\.(%s)\sHTTP\/" % (HTTPMETHOD.GET, "|".join(CRAWL_EXCLUDE_EXTENSIONS)), request, re.I | re.M):
+        # check jpg png static file
         logger.info("static file")
         return
 
@@ -164,12 +163,11 @@ def parseRequestFile(content, checkParams=True):
         newline = "\r\n" if line.endswith('\r') else '\n'
         line = line.strip('\r')
 
-
-        #get request method and url
-        #'\\A(CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PUT|TRACE) (.+) HTTP/[\\d.]+\\Z'
+        # get request method and url
+        # '\\A(CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PUT|TRACE) (.+) HTTP/[\\d.]+\\Z'
         match = re.search(r"\A(%s) (.+) HTTP/[\d.]+\Z" % "|".join(getPublicTypeMembers(HTTPMETHOD, True)), line) if not method else None
 
-        #在确定了POST头后面，如果后面有一个空行，并且没有解析到之前的data，就判断有参数
+        # 在确定了POST头后面，如果后面有一个空行，并且没有解析到之前的data，就判断有参数
         if len(line.strip()) == 0 and method and method != HTTPMETHOD.GET and data is None:
             data = ""
             params = True
@@ -215,7 +213,7 @@ def parseRequestFile(content, checkParams=True):
                 params = True
 
             # Avoid proxy and connection type related headers
-            elif key not in ('Proxy-Connection', 'Connection','Content-Length','Accept'):
+            elif key not in ('Proxy-Connection', 'Connection', 'Content-Length', 'Accept'):
                 headers[getUnicode(key)] = getUnicode(value)
                 headers[key] = value
 
@@ -227,17 +225,18 @@ def parseRequestFile(content, checkParams=True):
     #     elif not scheme and port == "443":
     #         scheme = "https"
 
-        # 暂时
-        # if 1==0:
-        #     scheme = "https"
-        #     port = port or "443"
+    # 暂时
+    # if 1==0:
+    #     scheme = "https"
+    #     port = port or "443"
 
     if not url.startswith("http"):
         url = "%s://%s:%s%s" % (scheme or "http", host, port or "80", url)
         scheme = None
         port = None
 
-    return {'url':url, 'method':method, 'data':data, 'cookie':cookie, 'headers':headers}
+    return {'url': url, 'method': method, 'data': data, 'cookie': cookie, 'headers': headers}
+
 
 def parse_url(content):
     request = content
@@ -248,14 +247,14 @@ def parse_url(content):
         if not line.strip() and index == len(lines) - 1:
             break
 
-        if re.match("(http|https)://.*",line) and 'HTTP' not in line:
-            return {'url':line,'method':'GET','data':'','cookie':'','headers':{}}
+        if re.match("(http|https)://.*", line) and 'HTTP' not in line:
+            return {'url': line, 'method': 'GET', 'data': '', 'cookie': '', 'headers': {}}
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     req = '''
-    
-    
+
+
 POST /guest/edit.php HTTP/1.1
 Host: 127.0.0.1
 Cache-Control: max-age=0

@@ -10,7 +10,7 @@ g_file_read_info = FileReadChecker()
 
 
 req = '''
-http://127.0.0.1/include.php?filename=c:/windows/win.ini
+http://127.0.0.1/guest/edit.php?name=lufei&id=2
 '''
 
 

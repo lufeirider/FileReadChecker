@@ -64,8 +64,9 @@ class FileReadChecker:
                 error_dict[type].append(regexp)
         self.error_dict = error_dict
 
+    #检测参数里面是否包含xx.xx?size=1 或者 xx.xx#fsdf 或者 xx.xx文件
     def check_value(self):
-        if re.search(r'.*?\.\w+(&|$)',self.value):
+        if re.search(r'.*?\.\w+($|\?|#)',self.value):
             return True
         else:
             return False
@@ -218,7 +219,7 @@ class FileReadChecker:
                     self.regexp = payload[1]
 
                     parse_url = urlparse.urlparse(req_info['url'])
-                    req_poc_info['url'] = "%s://%s:%s/%s" % (parse_url.scheme, parse_url.hostname, parse_url.port or '', payload[0])
+                    req_poc_info['url'] = "%s://%s%s/%s" % (parse_url.scheme, parse_url.hostname, ':'+str(parse_url.port) if parse_url.port else '', payload[0])
                     req_poc_info['method'] = 'GET'
 
                     rsp = self.send_request(req_poc_info, 'url')

