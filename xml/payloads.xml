@@ -22,8 +22,11 @@
         <payload value="file:///windows/win.ini" regexp="; for 16-bit app support"/>
         <payload value="file:///proc/version" regexp="Linux version.*?gcc version"/>
     </type>
+    
+    <!-- path -->
+    <!--spring url pattern /*的问题-->
 
-      <!-- host -->
+    <!-- host -->
     <type value="host">
         <!--代理配置或者python框架的问题，或者反代问题-->
         <payload value="../../../../../../../../../../../../../../../../proc/version" regexp="Linux version.*?gcc version"/>
